@@ -1,33 +1,12 @@
-﻿<?php
+<?php
 /**
  * 微信公众平台 PHP SDK 示例文件
  *
  * @author NetPuter <netputer@gmail.com>
  */
-	
 
   require('../src/Wechat.php');
-  //require('MessageManager.php');
-  include 'MessageManager.php';
 
-	traceHttp();
-	
-	function traceHttp(){
-		//clear
-		//file_put_contents("saekv://log.content","");
-		
-		logger("REMOTE_ADDR: ".$_SERVER["REMOTE_ADDR"].
-			((strpos($_SERVER["REMOTE_ADDR"], "101.226"))?" FROM WEIXIN":" UNKNOWN IP"));
-		logger("QUERY_STRING: ".$_SERVER["QUERY_STRING"]);
-		//echo
-		$old=file_get_contents("saekv://log.content");
-		echo $old;
-	}
-	function logger($content){
-		$old=file_get_contents("saekv://log.content");
-		file_put_contents("saekv://log.content", $old.date('Y-m-d H:i:s    ').$content."<br>");
-		//file_put_contents("log.html", date('Y-m-d H:i:s    ').$content."<br>",FILE_APPEND);	
-	}
   /**
    * 微信公众平台演示类
    */
@@ -58,11 +37,6 @@
      */
     protected function onText() {
       $this->responseText('收到了文字消息：' . $this->getRequest('content'));
-      
-      //$content=$this->getRequest('content');//$content."=>".
-      //$this->responseText(process($content));//process($content)方法定义在MessageManager.php
-	  
-	  //$this->responseText(process($this));//process($content)方法定义在MessageManager.php
     }
 
     /**

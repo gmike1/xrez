@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * 微信公众平台 PHP SDK 示例文件
  *
@@ -6,7 +6,10 @@
  */
 
   require('../src/Wechat.php');
+  require('MessageManager.php');
 
+	
+	
   /**
    * 微信公众平台演示类
    */
@@ -36,7 +39,8 @@
      * @return void
      */
     protected function onText() {
-      $this->responseText('收到了文字消息：' . $this->getRequest('content'));
+		//$this->responseText('收到了文字消息：' . $this->getRequest('content'));
+		
     }
 
     /**

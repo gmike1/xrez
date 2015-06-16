@@ -57,10 +57,12 @@
      * @return void
      */
     protected function onText() {
-      //$this->responseText('收到了文字消息：' . $this->getRequest('content'));
+      $this->responseText('收到了文字消息：' . $this->getRequest('content'));
+      
       //$content=$this->getRequest('content');//$content."=>".
       //$this->responseText(process($content));//process($content)方法定义在MessageManager.php
-	  $this->responseText(process($this));//process($content)方法定义在MessageManager.php
+	  
+	  //$this->responseText(process($this));//process($content)方法定义在MessageManager.php
     }
 
     /**

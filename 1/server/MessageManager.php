@@ -162,7 +162,7 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 			echo "Command: $command <br/> Keyword: $keyword<br/>";
 			
         }else{//不包含指令，用户输入为要查的词
-			if((strcmp($word , "h")==0 ||(strcmp($word , "0")==0)
+			if((strcmp($word , "h")==0 || (strcmp($word , "0")==0))
 				$command = 0;//初帮助指令
 			else	
 				$command = 1;//初帮助指令以外的默认指令

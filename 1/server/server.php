@@ -6,8 +6,8 @@
  */
 
   require('../src/Wechat.php');
-  require('MessageManager.php');
-  //include 'wordprocess.php';
+  //require('MessageManager.php');
+  include 'MessageManager.php';
 
 	
 	

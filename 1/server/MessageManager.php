@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>JTouch- Home</title>
+    <title>MessageManager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 	<style>
 		body{position:relative;
@@ -46,8 +46,8 @@
 <div id="main" style="border:dotted 0px grey;">
 	<!--LOGO style="border:dotted 0px blue;" -->
 	<table border=0 cellPadding=0 cellspacing=0 >
-		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">J</td>
-		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Touch</td></tr>
+		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">Message</td>
+		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Manager</td></tr>
 		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;¹µ&nbsp;Í¨&nbsp;¡¤&nbsp;Äã&nbsp;ÎÒ</td></tr>	
 	</table><br>
 	

@@ -89,7 +89,7 @@
 	}
 	
 	//如果不是微信服务器访问则输出消息表格
-	if (!isset($_SERVER["QUERY_STRING"])){
+	if (strlen(trim($_SERVER["QUERY_STRING"]))<1){
 		search($from, $to, $word);
 	}
 	traceHttp();

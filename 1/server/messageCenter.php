@@ -201,9 +201,9 @@
                 
                 /*onclick=\"submitForm()\"*/
                 echo "<td nowrap class=\"frameCell\" >
-					<a  href=\"connect.php?action=respond&from=".$_to."&to=".$_from."&at=".$key."\">Respond</a>&nbsp;
+					<a  href=\"kvdbManager.php?action=respond&from=".$_to."&to=".$_from."&at=".$key."\">Respond</a>&nbsp;
 					<a href=\"kvdbManager.php?action=update&key=".$key."&value=".$val."\"   target=\"_blank\">Update</a>&nbsp;
-					<a href=\"connect.php?action=delete&key=".$key."\">Delete</a> </td>";
+					<a href=\"messageCenter.php?action=delete&key=".$key."\">Delete</a> </td>";
 					
 				echo "</tr>";
 				//<a  href=\"javascript:copycode($('code".$i."'));\">Copy</a>&nbsp;

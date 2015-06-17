@@ -1,4 +1,4 @@
-<html>
+ï»¿<html>
 <head>
     <title>MessageManager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
@@ -48,18 +48,18 @@
 	<table border=0 cellPadding=0 cellspacing=0 >
 		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">Message</td>
 		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Manager</td></tr>
-		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;¹µ&nbsp;Í¨&nbsp;¡¤&nbsp;Äã&nbsp;ÎÒ</td></tr>	
+		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;æ²Ÿ&nbsp;é€š&nbsp;Â·&nbsp;ä½ &nbsp;æˆ‘</td></tr>	
 	</table><br>
 	
 <?php	
 	/*
 	Version 1.0 20150616 MessageManager.php
-	×ÛºÏµÄfunction process($content)´¦ÀíÊı¾İ²¢·µ»Ø´¿ÎÄ±¾£¬Î¢ĞÅÄ£°åÌ×ÓÃÁôµ½server.phpµÄ$this->responseText()·½·¨ÖĞÔÙÖ´ĞĞ
-	»ùÓÚÎ¢ĞÅ¹«ÖÚÆ½Ì¨ PHP SDK
-	²Î¿¼http://sae.sina.com.cn/?m=apps&a=detail&aid=162
+	ç»¼åˆçš„function process($content)å¤„ç†æ•°æ®å¹¶è¿”å›çº¯æ–‡æœ¬ï¼Œå¾®ä¿¡æ¨¡æ¿å¥—ç”¨ç•™åˆ°server.phpçš„$this->responseText()æ–¹æ³•ä¸­å†æ‰§è¡Œ
+	åŸºäºå¾®ä¿¡å…¬ä¼—å¹³å° PHP SDK
+	å‚è€ƒhttp://sae.sina.com.cn/?m=apps&a=detail&aid=162
 	*/
 	
-	//È«¾Ö±äÁ¿$command£¬$keyword£¨ÔÚprepare($param);·½·¨ÖĞµÃµ½ÕıÈ·µÄÖµ£©£¬º¯ÊıÖĞ±ØĞëÓÃglobal±êÊ¶£¬·ñÔò³ö´í
+	//å…¨å±€å˜é‡$commandï¼Œ$keywordï¼ˆåœ¨prepare($param);æ–¹æ³•ä¸­å¾—åˆ°æ­£ç¡®çš„å€¼ï¼‰ï¼Œå‡½æ•°ä¸­å¿…é¡»ç”¨globalæ ‡è¯†ï¼Œå¦åˆ™å‡ºé”™
 	$command=0;
 	$keyword=null;
 	$recordCount=1;
@@ -84,18 +84,18 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 	}
 	
 	
-	//´´½¨ĞÂÀËKVDB¶ÔÏó
+	//åˆ›å»ºæ–°æµªKVDBå¯¹è±¡
 	$kv = new SaeKV();
-	//³õÊ¼»¯SaeKV¶ÔÏó
+	//åˆå§‹åŒ–SaeKVå¯¹è±¡
 	$ret = $kv->init();
 
 
 	/*
-	process·½·¨´¦ÀíÊäÈë·µ»Ø×îºó½á¹û
+	processæ–¹æ³•å¤„ç†è¾“å…¥è¿”å›æœ€åç»“æœ
 	*/
 	function process($object) 
 	{
-        //È«¾Ö±äÁ¿$command£¬$keyword£¨ÔÚprepare($param);·½·¨ÖĞµÃµ½ÕıÈ·µÄÖµ£©£¬±ØĞëÓÃglobal±êÊ¶£¬·ñÔò³ö´í
+        //å…¨å±€å˜é‡$commandï¼Œ$keywordï¼ˆåœ¨prepare($param);æ–¹æ³•ä¸­å¾—åˆ°æ­£ç¡®çš„å€¼ï¼‰ï¼Œå¿…é¡»ç”¨globalæ ‡è¯†ï¼Œå¦åˆ™å‡ºé”™
         global $command;//MUST
         global $keyword;//MUST
         
@@ -104,26 +104,26 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
         $toUserName=$this->getRequest('tousername');
         
         $param = trim($content);
-        //prepare($param)·½·¨´¦Àíºó£¬È¡³ö$commandºÍ$keyword
+        //prepare($param)æ–¹æ³•å¤„ç†åï¼Œå–å‡º$commandå’Œ$keyword
 		$content = prepare($param);
 
-		if($command ==1){//ÍÆËÍĞÅÏ¢´æ´¢µ½kvdb
+		if($command ==1){//æ¨é€ä¿¡æ¯å­˜å‚¨åˆ°kvdb
 			$t=time();
-			// Ôö¼Ókey-value
+			// å¢åŠ key-value
 			$ret = $kv->add('msg.item.'.$t, $keyword);
 			$ret = $kv->add('msg.from.'.$t, $fromUserName);
 			$ret = $kv->add('msg.to.'.$t, $fromUserName);
 			if(strlen($at)>0)$ret = $kv->add('msg.at.'.$t, $at);
 		}	
         
-		//Ê×ÏÈ¾«È·£¬Èç¹ûÓĞÆ¥Åä·µ»Ø½á¹û
-		//´Ë´¦ÒÀ¾İprepare($param);×îºó·µ»ØÖµÅĞ¶Ï
+		//é¦–å…ˆç²¾ç¡®ï¼Œå¦‚æœæœ‰åŒ¹é…è¿”å›ç»“æœ
+		//æ­¤å¤„ä¾æ®prepare($param);æœ€åè¿”å›å€¼åˆ¤æ–­
 		if($content !=null) return $content;//$param."->".
-		//Èç¹û¾«È·ËÑË÷Ã»ÓĞÆ¥Åä£¬Ôòsearch($keyword)·½·¨:¶¨ÖÆËÑË÷½á¹û£¨Ä£ºıÆ¥ÅäËÑË÷£©
-		//$keywordÎªÈ«¾Ö±äÁ¿£¬prepare($word) ·½·¨ÖĞ´Ó$paramÖĞÈ¡³ö
+		//å¦‚æœç²¾ç¡®æœç´¢æ²¡æœ‰åŒ¹é…ï¼Œåˆ™search($keyword)æ–¹æ³•:å®šåˆ¶æœç´¢ç»“æœï¼ˆæ¨¡ç³ŠåŒ¹é…æœç´¢ï¼‰
+		//$keywordä¸ºå…¨å±€å˜é‡ï¼Œprepare($word) æ–¹æ³•ä¸­ä»$paramä¸­å–å‡º
         $content = "$keyword  [$command]\n------------------------------\n"
 			.search($fromUserName, $toUserName, $keyword)
-			."------------------------------\n»ùÓÚÎ¢ĞÅµÄÊÖ»úµçÄÔ¼äĞÅÏ¢ÍÆËÍ£¬¹Ø×¢Î¢ĞÅ¹«ÖÚºÅ£ºLetItFly ";
+			."------------------------------\nåŸºäºå¾®ä¿¡çš„æ‰‹æœºç”µè„‘é—´ä¿¡æ¯æ¨é€ï¼Œå…³æ³¨å¾®ä¿¡å…¬ä¼—å·ï¼šLetItFly ";
 
         return $content;//$param."=>".	
 		
@@ -131,22 +131,22 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 
 
 	/*
-	prepare·½·¨×¨ÃÅ¸ºÔğ½âÎöÖ¸Áî¼°´¦Àí°ïÖú¡¢·´À¡µÈ
+	prepareæ–¹æ³•ä¸“é—¨è´Ÿè´£è§£ææŒ‡ä»¤åŠå¤„ç†å¸®åŠ©ã€åé¦ˆç­‰
 	*/
 	function prepare($word) 
 	{        	
-        //È«¾Ö±äÁ¿$command£¬$keyword£¨ÔÚprepare($param);·½·¨ÖĞµÃµ½ÕıÈ·µÄÖµ£©£¬±ØĞëÓÃglobal±êÊ¶£¬·ñÔò³ö´í
+        //å…¨å±€å˜é‡$commandï¼Œ$keywordï¼ˆåœ¨prepare($param);æ–¹æ³•ä¸­å¾—åˆ°æ­£ç¡®çš„å€¼ï¼‰ï¼Œå¿…é¡»ç”¨globalæ ‡è¯†ï¼Œå¦åˆ™å‡ºé”™
         global $command;//MUST
         global $keyword;//MUST
         
         echo "Prepare:  $word <br/>";
         
         if((strcmp($word , "h")==0) ||(strcmp($word , "0")==0) ){// || $word == 0 || $word == "0"
-			$helpText="°ïÖú£º\n * ·¢ËÍ0»òh»ñÈ¡°ïÖú\n * ·¢ËÍÎÄ±¾£¬ÍÆËÍµ½·şÎñÆ÷£¨Ä¬ÈÏ¸ø±¾ÈËÎ¢ĞÅÕË»§£©¡£\n *  Êı×ÖÖ¸Áî1-2¹¦ÄÜ£¨²ÎÊıÓÃÓ¢ÎÄÃ°ºÅ:·Ö¸ô£©¡£\n * 1:ÊÕ¼şÈË:ÎÄ±¾£¬·¢ËÍÎÄ±¾¸øÖ¸¶¨ÊÕ¼şÈË¡£\n * 2 »ñÈ¡±¾ÈËµçÄÔ¶Ë»ò±ğÈËÍÆËÍµÄĞÅÏ¢¡£\n * ¾ÙÀı£º\nÊäÈë1:Ğ¡Ã÷: ÍÆ¼öÒôÀÖhttp://url.cn/2qDEZT?q.mp3¡£[ÍÆËÍ¸ÃÒôÀÖ¶ÌÁ´½Ó¸øĞ¡Ã÷]";	
+			$helpText="å¸®åŠ©ï¼š\n * å‘é€0æˆ–hè·å–å¸®åŠ©\n * å‘é€æ–‡æœ¬ï¼Œæ¨é€åˆ°æœåŠ¡å™¨ï¼ˆé»˜è®¤ç»™æœ¬äººå¾®ä¿¡è´¦æˆ·ï¼‰ã€‚\n *  æ•°å­—æŒ‡ä»¤1-2åŠŸèƒ½ï¼ˆå‚æ•°ç”¨è‹±æ–‡å†’å·:åˆ†éš”ï¼‰ã€‚\n * 1:æ”¶ä»¶äºº:æ–‡æœ¬ï¼Œå‘é€æ–‡æœ¬ç»™æŒ‡å®šæ”¶ä»¶äººã€‚\n * 2 è·å–æœ¬äººç”µè„‘ç«¯æˆ–åˆ«äººæ¨é€çš„ä¿¡æ¯ã€‚\n * ä¸¾ä¾‹ï¼š\nè¾“å…¥1:å°æ˜: æ¨èéŸ³ä¹http://url.cn/2qDEZT?q.mp3ã€‚[æ¨é€è¯¥éŸ³ä¹çŸ­é“¾æ¥ç»™å°æ˜]";	
 			return $helpText;
 		}
         if(checkStr($word)==7){
-			return "¸ĞĞ»ÄãµÄ·´À¡£¬ÎÒ»á°ÑÄãµÄ»°×ª¸æÎÒµÄÖ÷ÈËµÄ¡£ÏàĞÅÖ÷ÈËºÜ¿ì»á¸øÄã»Ö¸´:)";
+			return "æ„Ÿè°¢ä½ çš„åé¦ˆï¼Œæˆ‘ä¼šæŠŠä½ çš„è¯è½¬å‘Šæˆ‘çš„ä¸»äººçš„ã€‚ç›¸ä¿¡ä¸»äººå¾ˆå¿«ä¼šç»™ä½ æ¢å¤:)";
         }
         //echo "Command  mode  ".$word[1];
         //echo "<br/>";		
@@ -161,11 +161,11 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 			//$keyword =substr($keyword, 2, strlen($keyword));
 			echo "Command: $command <br/> Keyword: $keyword<br/>";
 			
-        }else{//²»°üº¬Ö¸Áî£¬ÓÃ»§ÊäÈëÎªÒª²éµÄ´Ê
+        }else{//ä¸åŒ…å«æŒ‡ä»¤ï¼Œç”¨æˆ·è¾“å…¥ä¸ºè¦æŸ¥çš„è¯
 			if((strcmp($word , "h")==0) OR (strcmp($word , "0")==0))
-				$command = 0;//³õ°ïÖúÖ¸Áî
+				$command = 0;//åˆå¸®åŠ©æŒ‡ä»¤
 			else	
-				$command = 1;//³õ°ïÖúÖ¸ÁîÒÔÍâµÄÄ¬ÈÏÖ¸Áî
+				$command = 1;//åˆå¸®åŠ©æŒ‡ä»¤ä»¥å¤–çš„é»˜è®¤æŒ‡ä»¤
 			$keyword = $word;
         }
         return null;
@@ -174,7 +174,7 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 
 	function search($fromUser, $toUser, $word){
 		$result="";
-		//È«¾Ö±äÁ¿$command£¬$keyword£¨ÔÚprepare($param);·½·¨ÖĞµÃµ½ÕıÈ·µÄÖµ£©£¬±ØĞëÓÃglobal±êÊ¶£¬·ñÔò³ö´í
+		//å…¨å±€å˜é‡$commandï¼Œ$keywordï¼ˆåœ¨prepare($param);æ–¹æ³•ä¸­å¾—åˆ°æ­£ç¡®çš„å€¼ï¼‰ï¼Œå¿…é¡»ç”¨globalæ ‡è¯†ï¼Œå¦åˆ™å‡ºé”™
 		global $command;
 		global $recordCount;
 		
@@ -198,18 +198,18 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 					$result=$result."|".$val;
 				}
                 //var_dump("key: ".$key." value: ".$val."<p>");
-                //¼ÆËãÖ¸¶¨×Ö·û´®ÔÚÄ¿±ê×Ö·û´®ÖĞ×îºóÒ»´Î³öÏÖµÄÎ»ÖÃ
+                //è®¡ç®—æŒ‡å®šå­—ç¬¦ä¸²åœ¨ç›®æ ‡å­—ç¬¦ä¸²ä¸­æœ€åä¸€æ¬¡å‡ºç°çš„ä½ç½®
 				//$spos = strrpos(".", $key);
-				//È¡µ¹Êın¸ö×Ö·û
-				//È¡keyµÄºó×º£¬¼´Ê±¼ä×Ö·û´®
-				//£¨ÀıÈçkey£ºmsg.item.1409287879 ºó×º£º1409287879
+				//å–å€’æ•°nä¸ªå­—ç¬¦
+				//å–keyçš„åç¼€ï¼Œå³æ—¶é—´å­—ç¬¦ä¸²
+				//ï¼ˆä¾‹å¦‚keyï¼šmsg.item.1409287879 åç¼€ï¼š1409287879
 				$rail = substr($key,-10);
 				$date = date("Y-m-d H:i:s", $rail) ;
-				// »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍÔ´£¨msg.to£©
+				// è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€æºï¼ˆmsg.toï¼‰
 				$_from = $kv->get("msg.from.".$rail);
-				// »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍ¶ÔÏó£¨msg.to£©
+				// è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€å¯¹è±¡ï¼ˆmsg.toï¼‰
 				$_to = $kv->get("msg.to.".$rail);
-                // »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ»Ø¸´¶ÔÏó£¨msg.to£©
+                // è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å›å¤å¯¹è±¡ï¼ˆmsg.toï¼‰
 				$_at = $kv->get("msg.at.".$rail);
                 
                 echo "<tr>";
@@ -241,15 +241,15 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
             }  
         }  
 		echo "</table>";
-		// »ñµÃÏûÏ¢×ÜÊı£¨msg.count£©
+		// è·å¾—æ¶ˆæ¯æ€»æ•°ï¼ˆmsg.countï¼‰
 		//$_count = $kv->get("msg.count"); 
-		echo "<p>¹²ÓĞ ".$i." ÌõÏûÏ¢¡£</p> ";
+		echo "<p>å…±æœ‰ ".$i." æ¡æ¶ˆæ¯ã€‚</p> ";
 		
 		//$ret = $kv->get('msg.item', 100);
 		return $result;
 	}
 ?>
-<a href="readme.html" targent="_blank">¹ØÓÚKVDBÏûÏ¢·şÎñÆ÷µÄËµÃ÷</a>
+<a href="readme.html" targent="_blank">å…³äºKVDBæ¶ˆæ¯æœåŠ¡å™¨çš„è¯´æ˜</a>
 </div>
 <div id="rightBar"></div>
 </div>

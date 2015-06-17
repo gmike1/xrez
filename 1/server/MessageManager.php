@@ -180,7 +180,7 @@
         echo "Command pos:  $pos <br/>";
         
         if($pos !== false){// if($keyword[1] == ":"){
-			$parts=explode(":" , $word);
+			$parts=explode(":" , $word, 3);//第二个:之后都作为第三段
 			$size=count($parts);//数组长度
 			$command = $parts[0];
 			$keyword = $parts[1];

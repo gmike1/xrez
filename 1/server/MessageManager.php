@@ -62,6 +62,7 @@
 	//全局变量$command，$keyword（在prepare($param);方法中得到正确的值），函数中必须用global标识，否则出错
 	$command=0;
 	$keyword=null;
+	$param2=null;//第二个参数，通常是“1:小明: 推荐音乐”中的小明
 	$recordCount=1;
 	
 	$action="";
@@ -94,23 +95,28 @@
 	/*
 	process方法处理输入返回最后结果
 	*/
-	function process($content) 
+	function process($content, $from = FALSE, $to = FALSE) 
 	{
         //全局变量$command，$keyword（在prepare($param);方法中得到正确的值），必须用global标识，否则出错
         global $command;//MUST
         global $keyword;//MUST
-        global $kv;
+        global $param2;//第二个参数，通常是“1:小明: 推荐音乐”中的小明
         /*$content=$object['content'];
         $fromUserName=$object['fromusername'];
         $toUserName=$object['tousername'];*/
         //$content=$object->getRequest('content');
         $fromUserName="DEFAUT_USER";//$object->getRequest('fromusername');
         $toUserName="DEFAUT_USER";//$object->getRequest('tousername');
+        if($from !==  FALSE)$fromUserName=$from;
+        if($to !==  FALSE)$toUserName=$to;
         
         $param = trim($content);
         //首先处理帮助等命令
 		//prepare($param)方法处理后，取出$command和$keyword
 		$content = prepare($param);
+		//必须在prepare($param);调用之后
+		$toUserName=$fromUserName;//发给发消息者即自己，否则就是发给公众号
+        if($param2!=null)$toUserName=$param2;//如果指定则发给指定收信人
         
 		//此处依据prepare($param);最后返回值判断
 		if($content !=null) return $content;//$param."->".
@@ -137,7 +143,7 @@
 			// 增加key-value
 			$ret = $kv->add('msg.item.'.$t, $keyword);
 			$ret = $kv->add('msg.from.'.$t, $fromUserName);//
-			$ret = $kv->add('msg.to.'.$t, $fromUserName);//
+			$ret = $kv->add('msg.to.'.$t, $toUserName);//
 			if(strlen($at)>0)$ret = $kv->add('msg.at.'.$t, $at);
 			//每推送一条到服务器，记录计数增加1
 			$recordCount=$kv->get("msg.recordCount");
@@ -157,6 +163,7 @@
         //全局变量$command，$keyword（在prepare($param);方法中得到正确的值），必须用global标识，否则出错
         global $command;//MUST
         global $keyword;//MUST
+        global $param2;//MUST
         
         echo "Prepare:  $word <br/>";
         
@@ -174,8 +181,13 @@
         
         if($pos !== false){// if($keyword[1] == ":"){
 			$parts=explode(":" , $word);
+			$size=count($parts);//数组长度
 			$command = $parts[0];
 			$keyword = $parts[1];
+			if($size>2){
+				$param2 = $parts[1];
+				$keyword = $parts[2];
+			}
 			//$command =$keyword[0];
 			//$keyword =substr($keyword, 2, strlen($keyword));
 			echo "Command: $command <br/> Keyword: $keyword<br/>";

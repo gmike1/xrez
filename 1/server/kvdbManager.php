@@ -138,6 +138,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
             foreach($ret as $key=>$val)  
             {
                 $status = "√";
+                if(strpos($key,"msg.recordCount")===false)
                 if(strpos($key,"msg.item")===false){
                 $rail = substr($key,-10);
                 $ret = $kv->get("msg.item.".$rail);

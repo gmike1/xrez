@@ -11,6 +11,12 @@
 	traceHttp();
 	
 	function traceHttp(){
+		//创建新浪KVDB对象
+		//$kv = new SaeKV();
+		//初始化SaeKV对象
+		//$ret = $kv->init();
+		file_put_contents("saekv://log.content", "LOG FILE STORED ON KVDB<br>");
+		
 		//clear
 		//file_put_contents("saekv://log.content","");
 		

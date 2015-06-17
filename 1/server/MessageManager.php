@@ -314,8 +314,8 @@
 
 
 ?>
-<a href="readme.html" targent="_blank">关于KVDB消息服务器的说明</a><br>
-<a href="MessageManager.php?action=resetlog" targent="_blank">ResetLog</a>
+<br><a href="readme.html" targent="_blank">关于KVDB消息服务器的说明</a>
+<br><a href="MessageManager.php?action=resetlog" targent="_blank">ResetLog</a>
 </div>
 <div id="rightBar"></div>
 </div>

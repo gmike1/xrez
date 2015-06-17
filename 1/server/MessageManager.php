@@ -64,8 +64,6 @@
 	$keyword=null;
 	$recordCount=1;
 	
-	traceHttp();
-
 	$action="";
 	$from='TanGuodong'; 
 	$to='JiangTing'; 
@@ -90,6 +88,8 @@
 	}
 		
 	search($from, $to, $word);
+	
+	traceHttp();
 
 	/*
 	process方法处理输入返回最后结果
@@ -199,7 +199,7 @@
 		global $command;
 		global $recordCount;
 		
-		echo "Search: $fromUser, $toUser,  $word<br/>";
+		//echo "Search: $fromUser, $toUser,  $word<br/>";
 		
 		$kv = new SaeKV();
 		//初始化SaeKV对象

@@ -81,7 +81,7 @@
 	
 	if(strcmp($action , "resetlog")==0){
 		resetLog();
-		echo "log was reset.";
+		echo "<br>Log was reset.";
 	}
 	//DEBUG
 	if (isset($_GET['request'])) {
@@ -105,7 +105,7 @@
         //全局变量$command，$keyword（在prepare($param);方法中得到正确的值），必须用global标识，否则出错
         global $command;//MUST
         global $keyword;//MUST
-        
+        global $kv;
         /*$content=$object['content'];
         $fromUserName=$object['fromusername'];
         $toUserName=$object['tousername'];*/

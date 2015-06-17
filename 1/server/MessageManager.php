@@ -97,17 +97,17 @@
 	/*
 	process方法处理输入返回最后结果
 	*/
-	function process($object) 
+	function process($content) 
 	{
         //全局变量$command，$keyword（在prepare($param);方法中得到正确的值），必须用global标识，否则出错
         global $command;//MUST
         global $keyword;//MUST
         
-        $content=$object['content'];
+        /*$content=$object['content'];
         $fromUserName=$object['fromusername'];
-        $toUserName=$object['tousername'];
+        $toUserName=$object['tousername'];*/
         //$content=$object->getRequest('content');
-        //$fromUserName=$object->getRequest('fromusername');
+        $fromUserName="DEFAUT_USER";//$object->getRequest('fromusername');
         //$toUserName=$object->getRequest('tousername');
         
         $param = trim($content);
@@ -118,8 +118,8 @@
 			$t=time();
 			// 增加key-value
 			$ret = $kv->add('msg.item.'.$t, $keyword);
-			$ret = $kv->add('msg.from.'.$t, $fromUserName);
-			$ret = $kv->add('msg.to.'.$t, $fromUserName);
+			$ret = $kv->add('msg.from.'.$t, $fromUserName);//
+			$ret = $kv->add('msg.to.'.$t, $fromUserName);//
 			if(strlen($at)>0)$ret = $kv->add('msg.at.'.$t, $at);
 		}	
         

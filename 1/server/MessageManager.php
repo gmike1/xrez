@@ -88,7 +88,7 @@
 		process($param, FALSE, FALSE);
 	}
 		
-	search($from, $to, $word);
+	//search($from, $to, $word);
 	
 	traceHttp();
 

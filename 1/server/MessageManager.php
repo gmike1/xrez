@@ -85,7 +85,7 @@
 	//DEBUG
 	if (isset($_GET['request'])) {
 		$param = $_GET['request'];
-		process($param);
+		process($param, FALSE, FALSE);
 	}
 		
 	search($from, $to, $word);

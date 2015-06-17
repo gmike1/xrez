@@ -191,8 +191,11 @@
 		global $recordCount;
 		
 		echo "Search: $fromUser, $toUser,  $word<br/>";
- 
-		 $ret = $kv->pkrget('msg.item', 100);
+		
+		$kv = new SaeKV();
+		//初始化SaeKV对象
+		$ret = $kv->init();
+		$ret = $kv->pkrget('msg.item', 100);
 
 		 echo "<table border=0  cellPadding=0 cellspacing=0 >";
 		 echo "<tr><td  nowrap class=\"frameCell\">ID</td><td  nowrap class=\"frameCell\">Key</td><td  nowrap class=\"frameCell\">Date</td><td class=\"frameCell\">Messgage</td>

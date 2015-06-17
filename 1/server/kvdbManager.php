@@ -45,9 +45,9 @@
 <div id="main" style="border:dotted 0px grey;">
 	<!--LOGO style="border:dotted 0px blue;" -->
 	<table border=0 cellPadding=0 cellspacing=0 >
-		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">J</td>
-		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Touch</td></tr>
-		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;沟&nbsp;通&nbsp;·&nbsp;你&nbsp;我</td></tr>	
+		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">KV</td>
+		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">DB</td></tr>
+		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">Manager</td></tr>	
 	</table><br>
 <?php 
 $action="";
@@ -79,10 +79,10 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
         <td  class="frameCell"><input type="text" name="key" value="<?php echo $key; ?>" style="width:100%;"/></td></tr>
         <tr><td class="frameCell" style="width:10%">Value: </td>
         <td  class="frameCell"><input type="text" name="value" value="<?php echo $value; ?>" style="width:100%;"/></td></tr>
-		
+		<tr><td colspan=2>&nbsp;</td></tr>
 		
 		<tr>
-		<td  colspan=2>
+		<td colspan=2>
 		<input type="submit" name="action" value="Add"/>
 		<input type="submit" name="action" value="Update"/>
 		<input type="submit" name="action" value="Delete"/>
@@ -122,7 +122,8 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
  //开始枚举更新后的key-value
  $ret = $kv->pkrget('msg', 100);
 
- echo "<table border=0  cellPadding=0 cellspacing=0  style=\"width:100%\">";
+ echo "<table border=0  cellPadding=0 cellspacing=0  style=\"width:100%\">
+	<td>Key</td><td>Value</td><td>Action</td>";
          
  if(!empty($ret))  
         {  
@@ -156,7 +157,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
             }  
         }  
 		echo "</table>";        
- echo '<p>显示√的为自检之后发现正确无误的消息；显示×的为自检之后发现已经没有一致性（孤立/损坏）的消息。'; 
+ echo '<br><sapan style=\"width:auto;font-size: 8;\">显示√的为自检之后发现正确无误的消息；显示×的为自检之后发现已经没有一致性（孤立/损坏）的消息。</span>'; 
  // 删除key-value
  /*$ret = $kv->delete('abc');
  var_dump($ret);*/

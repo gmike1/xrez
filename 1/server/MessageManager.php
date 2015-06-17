@@ -91,10 +91,7 @@
 	
 	
 	
-	//创建新浪KVDB对象
-	$kv = new SaeKV();
-	//初始化SaeKV对象
-	$ret = $kv->init();
+
 
 
 	/*
@@ -118,6 +115,11 @@
 		$content = prepare($param);
 
 		if($command ==1){//推送信息存储到kvdb
+			//创建新浪KVDB对象
+			$kv = new SaeKV();
+			//初始化SaeKV对象
+			$ret = $kv->init();
+			
 			$t=time();
 			// 增加key-value
 			$ret = $kv->add('msg.item.'.$t, $keyword);

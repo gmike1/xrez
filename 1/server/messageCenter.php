@@ -88,19 +88,21 @@
 		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Center</td></tr>
 		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;沟&nbsp;通&nbsp;·&nbsp;你&nbsp;我</td></tr>	
 	</table><br>
+	
 <?php
-$action="";
-$from='Tan Guodong'; 
-$to='Jiang Ting'; 
-$word='';
-$at='';
-$key='';
-if(isset($_GET["action"]))$action=$_GET["action"];
-if(isset($_GET["from"]))	$from=$_GET["from"];
-if(isset($_GET["to"]))	$to=$_GET["to"];
-if(isset($_GET["word"]))	$word=$_GET["word"];
-if(isset($_GET["at"]))	$at=$_GET["at"];
-if(isset($_GET["key"]))	$key=$_GET["key"];
+	$action="";
+	$from='Tan Guodong'; 
+	$to='Jiang Ting'; 
+	$word='';
+	$at='';
+	$key='';
+	if(isset($_GET["action"]))$action=$_GET["action"];
+	if(isset($_GET["from"]))	$from=$_GET["from"];
+	if(isset($_GET["to"]))	$to=$_GET["to"];
+	if(isset($_GET["word"]))	$word=$_GET["word"];
+	if(isset($_GET["at"]))	$at=$_GET["at"];
+	if(isset($_GET["key"]))	$key=$_GET["key"];
+	//echo "<br>";
 
 ?>
 	<form name="headerForm" action="messageCenter.php" method="get">
@@ -124,6 +126,7 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 		</tr>
 		</table>
 	</form>
+	
 <?php
  //创建新浪KVDB对象
  $kv = new SaeKV();

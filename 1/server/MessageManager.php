@@ -64,18 +64,22 @@
 	$keyword=null;
 	$recordCount=1;
 	
-$action="";
-$from='TanGuodong'; 
-$to='JiangTing'; 
-$word='';
-$at='';
-$key='';
-if(isset($_GET["action"]))$action=$_GET["action"];
-if(isset($_GET["from"]))	$from=$_GET["from"];
-if(isset($_GET["to"]))	$to=$_GET["to"];
-if(isset($_GET["word"]))	$word=$_GET["word"];
-if(isset($_GET["at"]))	$at=$_GET["at"];
-if(isset($_GET["key"]))	$key=$_GET["key"];
+	traceHttp();
+
+	$action="";
+	$from='TanGuodong'; 
+	$to='JiangTing'; 
+	$word='';
+	$at='';
+	$key='';
+	if(isset($_GET["action"]))$action=$_GET["action"];
+	if(isset($_GET["from"]))	$from=$_GET["from"];
+	if(isset($_GET["to"]))	$to=$_GET["to"];
+	if(isset($_GET["word"]))	$word=$_GET["word"];
+	if(isset($_GET["at"]))	$at=$_GET["at"];
+	if(isset($_GET["key"]))	$key=$_GET["key"];
+	
+	if(strcmp($action , "resetlog")==0)resetLog();
 	
 	//DEBUG
 	if (isset($_GET['request'])) {
@@ -99,9 +103,9 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
         global $command;//MUST
         global $keyword;//MUST
         
-        $content=$this->getRequest('content');
-        $fromUserName=$this->getRequest('fromusername');
-        $toUserName=$this->getRequest('tousername');
+        $content=$object->getRequest('content');
+        $fromUserName=$object->getRequest('fromusername');
+        $toUserName=$object->getRequest('tousername');
         
         $param = trim($content);
         //prepare($param)方法处理后，取出$command和$keyword
@@ -248,8 +252,36 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
 		//$ret = $kv->get('msg.item', 100);
 		return $result;
 	}
+	
+	function traceHttp(){
+		//初始化"saekv://log.content"
+		//resetLog();
+		
+		//clear
+		//file_put_contents("saekv://log.content","");
+		
+		logger("REMOTE_ADDR: ".$_SERVER["REMOTE_ADDR"].
+			((strpos($_SERVER["REMOTE_ADDR"], "101.226"))?" FROM WEIXIN":" UNKNOWN IP"));
+		logger("QUERY_STRING: ".$_SERVER["QUERY_STRING"]);
+		//echo
+		$old=file_get_contents("saekv://log.content");
+		echo $old;
+	}
+	
+	function logger($content){
+		$old=file_get_contents("saekv://log.content");
+		file_put_contents("saekv://log.content", $old.date('Y-m-d H:i:s    ').$content."<br>");
+		//file_put_contents("log.html", date('Y-m-d H:i:s    ').$content."<br>",FILE_APPEND);	
+	}
+	
+	function resetLog(){
+		file_put_contents("saekv://log.content", "LOG FILE STORED ON KVDB<br>");
+	}
+
+
 ?>
-<a href="readme.html" targent="_blank">关于KVDB消息服务器的说明</a>
+<a href="readme.html" targent="_blank">关于KVDB消息服务器的说明</a><br>
+<a href="MessageManager.php?action=resetLog" targent="_blank">ResetLog</a>
 </div>
 <div id="rightBar"></div>
 </div>

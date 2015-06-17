@@ -108,19 +108,22 @@
         $toUserName="DEFAUT_USER";//$object->getRequest('tousername');
         
         $param = trim($content);
-        //prepare($param)方法处理后，取出$command和$keyword
+        //首先处理帮助等命令
+		//prepare($param)方法处理后，取出$command和$keyword
 		$content = prepare($param);
         
-		//首先处理帮助等命令
 		//此处依据prepare($param);最后返回值判断
 		if($content !=null) return $content;//$param."->".
 		
+		$pullMessage="";
 		//search($keyword)方法:拉取消息（每推送一条则自动检查并拉取最近5条消息，
 		//也可以用数字命令2仅仅拉取消息）
-		//$keyword为全局变量，prepare($word) 方法中从$param中取出
-        $content = "$keyword  [$command]\n------------------------------\n"
+		if($command ==2)$pullMessage="------------------------------\n"
 			.search($fromUserName, $toUserName, $keyword)
-			."------------------------------\n基于微信的手机电脑间信息推送，关注微信公众号：LetItFly ";
+			."------------------------------\n";
+
+        $content = "$keyword  [$command]\n".$pullMessage
+			."基于微信的手机电脑间信息推送，关注微信公众号gh_243a2497fa3e ";
 		echo $content;
 		
 		if($command ==1){//推送信息存储到kvdb

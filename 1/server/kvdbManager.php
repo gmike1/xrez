@@ -142,7 +142,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
                 echo "<td nowrap class=\"frameCell\" style=\"width:auto;font-size: 8;\">".$val."</td>";
                 echo "<td nowrap class=\"frameCell\" >
 					<a href=\"kvdbManager.php?action=update&key=".$key."&value=".$val."\"   target=\"_blank\">Update</a>&nbsp;
-					<a href=\"kvdbManager.php?action=delete&key=".$key."\">Delete</a>".$status." </td>";            
+					<a href=\"kvdbManager.php?action=delete&key=".$key."\">Delete</a>&nbsp;".$status." </td>";            
                 
 				echo "</tr>";
                 /*if($val['t']<time() && !empty($val['t']))  

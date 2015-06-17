@@ -108,7 +108,7 @@
         $toUserName=$object['tousername'];*/
         //$content=$object->getRequest('content');
         $fromUserName="DEFAUT_USER";//$object->getRequest('fromusername');
-        //$toUserName=$object->getRequest('tousername');
+        $toUserName="DEFAUT_USER";//$object->getRequest('tousername');
         
         $param = trim($content);
         //prepare($param)方法处理后，取出$command和$keyword
@@ -148,7 +148,7 @@
         
         echo "Prepare:  $word <br/>";
         
-        if((strcmp($word , "h")==0) ||(strcmp($word , "0")==0) ){// || $word == 0 || $word == "0"
+        if((strcmp($word , "h")==0) or (strcmp($word , "0")==0) ){// || $word == 0 || $word == "0"
 			$helpText="帮助：\n * 发送0或h获取帮助\n * 发送文本，推送到服务器（默认给本人微信账户）。\n *  数字指令1-2功能（参数用英文冒号:分隔）。\n * 1:收件人:文本，发送文本给指定收件人。\n * 2 获取本人电脑端或别人推送的信息。\n * 举例：\n输入1:小明: 推荐音乐http://url.cn/2qDEZT?q.mp3。[推送该音乐短链接给小明]";	
 			return $helpText;
 		}

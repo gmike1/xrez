@@ -1,10 +1,8 @@
-﻿<?php
+<?php
 /**
  * 微信公众平台 PHP SDK
- * 增加function getRequestObject()
+ *
  * @author NetPuter <netputer@gmail.com>
- * @author cemike@126.com
- 
  */
 
   /**
@@ -72,15 +70,7 @@
 
       return sha1(implode($signatureArray)) == $signature;
     }
-    /**
-     * 获取本次请求对象本身
-     *
-     * @return this->$request
-     * @author cemike@126.com
-     */	
-	public function getRequestObject(){
-		return $this->request;
-	}
+
     /**
      * 获取本次请求中的参数，不区分大小
      *
@@ -192,31 +182,42 @@
      */
     public function run() {
       switch ($this->getRequest('msgtype')) {
+
         case 'event':
           switch ($this->getRequest('event')) {
+
             case 'subscribe':
               $this->onSubscribe();
               break;
+
             case 'unsubscribe':
               $this->onUnsubscribe();
               break;
+
           }
+
           break;
+
         case 'text':
           $this->onText();
           break;
+
         case 'image':
           $this->onImage();
           break;
+
         case 'location':
           $this->onLocation();
           break;
+
         case 'link':
           $this->onLink();
           break;
+
         default:
           $this->onUnknown();
           break;
+
       }
     }
 

@@ -123,7 +123,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
  $ret = $kv->pkrget('msg', 100);
 
  echo "<table border=0  cellPadding=0 cellspacing=0  style=\"width:100%\">
-	<td>Key</td><td>Value</td><td>Action</td>";
+	<td class=\"frameCell\" style=\"font-size: 8\">Key</td><td class=\"frameCell\" style=\"font-size: 8\">Value</td><td class=\"frameCell\" style=\"font-size: 8\">Action</td>";
          
  if(!empty($ret))  
         {  

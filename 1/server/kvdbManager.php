@@ -79,8 +79,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
         <td  class="frameCell"><input type="text" name="key" value="<?php echo $key; ?>" style="width:100%;"/></td></tr>
         <tr><td class="frameCell" style="width:10%">Value: </td>
         <td  class="frameCell"><input type="text" name="value" value="<?php echo $value; ?>" style="width:100%;"/></td></tr>
-		<tr><td colspan=2>&nbsp;</td></tr>
-		
+		<tr><td colspan=2>&nbsp;</td></tr>		
 		<tr>
 		<td colspan=2>
 		<input type="submit" name="action" value="Add"/>
@@ -115,9 +114,18 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
  //$t=time();
  // 替换key-value
  $ret = $kv->replace($key, $value);
- } 
+ }
+  
  if($action =="delete"){
- $ret = $kv->delete($key);
+	$ret = $kv->delete($key);
+	$pos=strpos($key,"msg.item");
+    //echo "Command pos:  $pos <br/>";
+    if($pos !== false){//只有当删除的键包含msg.item才删除，保证每条消息只删除计数只减少1次
+		//每删除一条，记录计数减少1
+		$recordCount=$kv->get("msg.recordCount");
+		$kv->set("msg.recordCount", ($recordCount-1));        
+    }
+	
  }
  //开始枚举更新后的key-value
  $ret = $kv->pkrget('msg', 100);

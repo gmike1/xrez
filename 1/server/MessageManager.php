@@ -79,13 +79,16 @@
 	if(isset($_GET["at"]))	$at=$_GET["at"];
 	if(isset($_GET["key"]))	$key=$_GET["key"];
 	
-	if(strcmp($action , "resetlog")==0)resetLog();
-	
+	if(strcmp($action , "resetlog")==0){
+		resetLog();
+		echo "log was reset.";
+	}
 	//DEBUG
 	if (isset($_GET['request'])) {
 		$param = $_GET['request'];
 		process($param);
 	}
+	
 	
 	
 	//创建新浪KVDB对象
@@ -307,7 +310,7 @@
 
 ?>
 <a href="readme.html" targent="_blank">关于KVDB消息服务器的说明</a><br>
-<a href="MessageManager.php?action=resetLog" targent="_blank">ResetLog</a>
+<a href="MessageManager.php?action=resetlog" targent="_blank">ResetLog</a>
 </div>
 <div id="rightBar"></div>
 </div>

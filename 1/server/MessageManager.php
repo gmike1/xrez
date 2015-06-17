@@ -87,9 +87,11 @@
 		$param = $_GET['request'];
 		process($param, FALSE, FALSE);
 	}
-		
-	//search($from, $to, $word);
 	
+	//如果不是微信服务器访问则输出消息表格
+	if (!isset($_SERVER["QUERY_STRING"])){
+		search($from, $to, $word);
+	}
 	traceHttp();
 
 	/*

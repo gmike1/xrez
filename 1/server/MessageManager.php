@@ -118,7 +118,8 @@
 		$pullMessage="";
 		//search($keyword)方法:拉取消息（每推送一条则自动检查并拉取最近5条消息，
 		//也可以用数字命令2仅仅拉取消息）
-		if($command ==2)$pullMessage="------------------------------\n"
+		//if($command ==2)
+		$pullMessage="------------------------------\n"
 			.search($fromUserName, $toUserName, $keyword)
 			."------------------------------\n";
 

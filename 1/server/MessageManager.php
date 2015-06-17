@@ -110,7 +110,19 @@
         $param = trim($content);
         //prepare($param)方法处理后，取出$command和$keyword
 		$content = prepare($param);
-
+        
+		//首先处理帮助等命令
+		//此处依据prepare($param);最后返回值判断
+		if($content !=null) return $content;//$param."->".
+		
+		//search($keyword)方法:拉取消息（每推送一条则自动检查并拉取最近5条消息，
+		//也可以用数字命令2仅仅拉取消息）
+		//$keyword为全局变量，prepare($word) 方法中从$param中取出
+        $content = "$keyword  [$command]\n------------------------------\n"
+			.search($fromUserName, $toUserName, $keyword)
+			."------------------------------\n基于微信的手机电脑间信息推送，关注微信公众号：LetItFly ";
+		echo $content;
+		
 		if($command ==1){//推送信息存储到kvdb
 			//创建新浪KVDB对象
 			$kv = new SaeKV();
@@ -123,19 +135,11 @@
 			$ret = $kv->add('msg.from.'.$t, $fromUserName);//
 			$ret = $kv->add('msg.to.'.$t, $fromUserName);//
 			if(strlen($at)>0)$ret = $kv->add('msg.at.'.$t, $at);
+			//每推送一条到服务器，记录计数增加1
 			$recordCount=$kv->get("msg.recordCount");
 			$kv->set("msg.recordCount", ($recordCount+1));
 		}	
-        
-		//首先精确，如果有匹配返回结果
-		//此处依据prepare($param);最后返回值判断
-		if($content !=null) return $content;//$param."->".
-		//如果精确搜索没有匹配，则search($keyword)方法:定制搜索结果（模糊匹配搜索）
-		//$keyword为全局变量，prepare($word) 方法中从$param中取出
-        $content = "$keyword  [$command]\n------------------------------\n"
-			.search($fromUserName, $toUserName, $keyword)
-			."------------------------------\n基于微信的手机电脑间信息推送，关注微信公众号：LetItFly ";
-		echo $content;
+
         return $content;//$param."=>".	
 		
 	}
@@ -153,7 +157,7 @@
         echo "Prepare:  $word <br/>";
         
         if((strcmp($word , "h")==0) or (strcmp($word , "0")==0) ){// || $word == 0 || $word == "0"
-			$helpText="帮助：\n * 发送0或h获取帮助\n * 发送文本，推送到服务器（默认给本人微信账户）。\n *  数字指令1-2功能（参数用英文冒号:分隔）。\n * 1:收件人:文本，发送文本给指定收件人。\n * 2 获取本人电脑端或别人推送的信息。\n * 举例：\n输入1:小明: 推荐音乐http://url.cn/2qDEZT?q.mp3。[推送该音乐短链接给小明]";	
+			$helpText="帮助：\n * 发送0或h获取帮助\n * 发送文本，推送到服务器（默认给本人微信账户）。\n *  数字指令1-2功能（参数用英文冒号:分隔）。\n * 1:收件人:文本，发送文本给指定收件人。\n * 2 拉取本人电脑端或别人推送的信息。\n * 举例：\n输入1:小明: 推荐音乐http://url.cn/2qDEZT?q.mp3。[推送该音乐短链接给小明]";	
 			return $helpText;
 		}
         if(checkStr($word)==7){//checkStr($word)判断数字，汉字和英文
@@ -174,7 +178,7 @@
 			
         }else{//不包含指令，用户输入为要查的词
 			if(strcmp($word , "2")==0)
-				$command = 2;
+				$command = 2;//仅仅拉取消息
 			else if((strcmp($word , "h")==0) OR (strcmp($word , "0")==0))
 				$command = 0;//初帮助指令
 			else	
@@ -210,9 +214,10 @@
             foreach($ret as $key=>$val)  
             {                
                 $i=$i+1;
+                //返回最近5条推送消息
                 if($i>$recordCount-5){
 					$ckey=$key;
-					$result=$result."|".$val;
+					$result="*".$val."\n".$result;//倒序，新消息在前
 				}
                 //var_dump("key: ".$key." value: ".$val."<p>");
                 //计算指定字符串在目标字符串中最后一次出现的位置

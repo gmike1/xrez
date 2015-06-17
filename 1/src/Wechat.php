@@ -1,8 +1,10 @@
 ﻿<?php
 /**
  * 微信公众平台 PHP SDK
- *
+ * 增加function getRequestObject()
  * @author NetPuter <netputer@gmail.com>
+ * @author cemike@126.com
+ 
  */
 
   /**
@@ -74,10 +76,10 @@
      * 获取本次请求对象本身
      *
      * @return this->$request
-       @author cemike@126.com
+     * @author cemike@126.com
      */	
 	function getRequestObject(){
-		return this->$request;
+		return $request;
 	}
     /**
      * 获取本次请求中的参数，不区分大小

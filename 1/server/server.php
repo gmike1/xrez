@@ -6,7 +6,7 @@
  */
 
   require('../src/Wechat.php');
-  include 'MessageManager.php';
+  //include 'MessageManager.php';
 
 	traceHttp();
 	

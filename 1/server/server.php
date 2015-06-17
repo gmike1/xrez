@@ -39,7 +39,7 @@
      */
     protected function onText() {
       //$this->responseText('收到了文字消息：' . $this->getRequest('content'));
-	  $this->responseText(process(parent::getRequestObject()));// process($object)方法定义在MessageManager.php
+	  $this->responseText(process(parent::getRequest()));// process($object)方法定义在MessageManager.php
     }
 
     /**

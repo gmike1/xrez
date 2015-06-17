@@ -78,8 +78,8 @@
      * @return this->$request
      * @author cemike@126.com
      */	
-	function getRequestObject(){
-		return $request;
+	public function getRequestObject(){
+		return $this->request;
 	}
     /**
      * 获取本次请求中的参数，不区分大小

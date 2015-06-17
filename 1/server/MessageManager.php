@@ -103,9 +103,12 @@
         global $command;//MUST
         global $keyword;//MUST
         
-        $content=$object->getRequest('content');
-        $fromUserName=$object->getRequest('fromusername');
-        $toUserName=$object->getRequest('tousername');
+        $content=$object['content'];
+        $fromUserName=$object['fromusername'];
+        $toUserName=$object['tousername'];
+        //$content=$object->getRequest('content');
+        //$fromUserName=$object->getRequest('fromusername');
+        //$toUserName=$object->getRequest('tousername');
         
         $param = trim($content);
         //prepare($param)方法处理后，取出$command和$keyword

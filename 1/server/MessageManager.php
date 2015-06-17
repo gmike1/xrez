@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-    <title>MessageManager</title>
+    <title>XREZ:MessageManager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 	<style>
 		body{position:relative;
@@ -124,7 +124,7 @@ if(isset($_GET["key"]))	$key=$_GET["key"];
         $content = "$keyword  [$command]\n------------------------------\n"
 			.search($fromUserName, $toUserName, $keyword)
 			."------------------------------\n基于微信的手机电脑间信息推送，关注微信公众号：LetItFly ";
-
+		echo $content;
         return $content;//$param."=>".	
 		
 	}

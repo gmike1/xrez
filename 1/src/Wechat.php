@@ -76,7 +76,7 @@
      * @return this->$request
        @author cemike@126.com
      */	
-	getRequestObject(){
+	function getRequestObject(){
 		return this->$request;
 	}
     /**

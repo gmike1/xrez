@@ -1,4 +1,4 @@
-<head>
+ï»¿<head>
     <title>XREZ:Message-Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 	<style>
@@ -44,7 +44,7 @@
 	  if(event.srcElement.tagName=="TD"){
 	  curRow=event.srcElement.parentElement;
 	  curRow.style.background="blue";
-	  alert("ÕâÊÇµÚ"+(curRow.rowIndex+1)+"ĞĞ");
+	  alert("è¿™æ˜¯ç¬¬"+(curRow.rowIndex+1)+"è¡Œ");
 	  }
 	}
 	function selectCell(obj){
@@ -86,7 +86,7 @@
 	<table border=0 cellPadding=0 cellspacing=0 >
 		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">Message</td>
 		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Center</td></tr>
-		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;¹µ&nbsp;Í¨&nbsp;¡¤&nbsp;Äã&nbsp;ÎÒ</td></tr>	
+		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;æ²Ÿ&nbsp;é€š&nbsp;Â·&nbsp;ä½ &nbsp;æˆ‘</td></tr>	
 	</table><br>
 	
 <?php
@@ -129,9 +129,9 @@
 	</form>
 	
 <?php
- //´´½¨ĞÂÀËKVDB¶ÔÏó
+ //åˆ›å»ºæ–°æµªKVDBå¯¹è±¡
  $kv = new SaeKV();
- // ³õÊ¼»¯SaeKV¶ÔÏó
+ // åˆå§‹åŒ–SaeKVå¯¹è±¡
  $ret = $kv->init();
  //var_dump($ret);
  //echo '<p>';
@@ -139,7 +139,7 @@
  
  if($action =="Send"){
 	$t=time();
-	// Ôö¼Ókey-value
+	// å¢åŠ key-value
 	$ret = $kv->add('msg.item.'.$t, $word);
 	$ret = $kv->add('msg.from.'.$t, $from);
 	$ret = $kv->add('msg.to.'.$t, $to);
@@ -147,19 +147,19 @@
 	$ret = $kv->add('msg.at.'.$t, $at);
  }
  /*
- É¾³ıÒ»ÌõÏûÏ¢£¨4¸ö¼ü£©
+ åˆ é™¤ä¸€æ¡æ¶ˆæ¯ï¼ˆ4ä¸ªé”®ï¼‰
  */
  if($action =="delete"){
-	// É¾³ıºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄÏûÏ¢ÄÚÈİ
+	// åˆ é™¤åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„æ¶ˆæ¯å†…å®¹
 	$ret = $kv->delete($key);
 	$rail = substr($key,-10);
-	// É¾³ıºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍÔ´£¨msg.from£©
+	// åˆ é™¤åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€æºï¼ˆmsg.fromï¼‰
 	$ret = $kv->delete("msg.from.".$rail);
-	// É¾³ıºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍ¶ÔÏó£¨msg.to£©
+	// åˆ é™¤åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€å¯¹è±¡ï¼ˆmsg.toï¼‰
 	$ret = $kv->delete("msg.to.".$rail);
-	// É¾³ıºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ»Ø¸´¶ÔÏó£¨msg.at£©
+	// åˆ é™¤åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å›å¤å¯¹è±¡ï¼ˆmsg.atï¼‰
 	$ret = $kv->delete("msg.at.".$rail);
-	//Ã¿É¾³ıÒ»Ìõ£¬¼ÇÂ¼¼ÆÊı¼õÉÙ1
+	//æ¯åˆ é™¤ä¸€æ¡ï¼Œè®°å½•è®¡æ•°å‡å°‘1
 	$recordCount=$kv->get("msg.recordCount");
 	$kv->set("msg.recordCount", ($recordCount-1));  
  }
@@ -176,18 +176,18 @@
             {                
                 $i=$i+1;
                 //var_dump("key: ".$key." value: ".$val."<p>");
-                //¼ÆËãÖ¸¶¨×Ö·û´®ÔÚÄ¿±ê×Ö·û´®ÖĞ×îºóÒ»´Î³öÏÖµÄÎ»ÖÃ
+                //è®¡ç®—æŒ‡å®šå­—ç¬¦ä¸²åœ¨ç›®æ ‡å­—ç¬¦ä¸²ä¸­æœ€åä¸€æ¬¡å‡ºç°çš„ä½ç½®
 				//$spos = strrpos(".", $key);
-				//È¡µ¹Êın¸ö×Ö·û
-				//È¡keyµÄºó×º£¬¼´Ê±¼ä×Ö·û´®
-				//£¨ÀıÈçkey£ºmsg.item.1409287879 ºó×º£º1409287879
+				//å–å€’æ•°nä¸ªå­—ç¬¦
+				//å–keyçš„åç¼€ï¼Œå³æ—¶é—´å­—ç¬¦ä¸²
+				//ï¼ˆä¾‹å¦‚keyï¼šmsg.item.1409287879 åç¼€ï¼š1409287879
 				$rail = substr($key,-10);
 				$date = date("Y-m-d H:i:s", $rail) ;
-				// »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍÔ´£¨msg.to£©
+				// è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€æºï¼ˆmsg.toï¼‰
 				$_from = $kv->get("msg.from.".$rail);
-				// »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ·¢ËÍ¶ÔÏó£¨msg.to£©
+				// è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å‘é€å¯¹è±¡ï¼ˆmsg.toï¼‰
 				$_to = $kv->get("msg.to.".$rail);
-                // »ñµÃºó×ºÎª$railµÄÏûÏ¢£¨msg.item£©¶ÔÓ¦µÄ»Ø¸´¶ÔÏó£¨msg.to£©
+                // è·å¾—åç¼€ä¸º$railçš„æ¶ˆæ¯ï¼ˆmsg.itemï¼‰å¯¹åº”çš„å›å¤å¯¹è±¡ï¼ˆmsg.toï¼‰
 				$_at = $kv->get("msg.at.".$rail);
                 
                 echo "<tr>";
@@ -219,12 +219,12 @@
             }  
         }  
 		echo "</table>";
-		// »ñµÃÏûÏ¢×ÜÊı£¨msg.count£©
+		// è·å¾—æ¶ˆæ¯æ€»æ•°ï¼ˆmsg.countï¼‰
 		//$_count = $kv->get("msg.count"); 
-		echo "<p>¹²ÓĞ ".$i." ÌõÏûÏ¢¡£</p> ";    
+		echo "<p>å…±æœ‰ ".$i." æ¡æ¶ˆæ¯ã€‚</p> ";    
 
 ?>
-<a href="readme.html" targent="_blank">¹ØÓÚKVDBÏûÏ¢·şÎñÆ÷µÄËµÃ÷</a>
+<a href="readme.html" targent="_blank">å…³äºKVDBæ¶ˆæ¯æœåŠ¡å™¨çš„è¯´æ˜</a>
 </div>
 <div id="rightBar"></div>
 </div>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * 微信公众平台 PHP SDK 示例文件
  *
@@ -6,7 +6,26 @@
  */
 
   require('../src/Wechat.php');
+  include 'MessageManager.php';
 
+	traceHttp();
+	
+	function traceHttp(){
+		//clear
+		//file_put_contents("saekv://log.content","");
+		
+		logger("REMOTE_ADDR: ".$_SERVER["REMOTE_ADDR"].
+			((strpos($_SERVER["REMOTE_ADDR"], "101.226"))?" FROM WEIXIN":" UNKNOWN IP"));
+		logger("QUERY_STRING: ".$_SERVER["QUERY_STRING"]);
+		//echo
+		$old=file_get_contents("saekv://log.content");
+		echo $old;
+	}
+	function logger($content){
+		$old=file_get_contents("saekv://log.content");
+		file_put_contents("saekv://log.content", $old.date('Y-m-d H:i:s    ').$content."<br>");
+		//file_put_contents("log.html", date('Y-m-d H:i:s    ').$content."<br>",FILE_APPEND);	
+	}
   /**
    * 微信公众平台演示类
    */
@@ -37,6 +56,7 @@
      */
     protected function onText() {
       $this->responseText('收到了文字消息：' . $this->getRequest('content'));
+	  //$this->responseText(process($this));//process($object)方法定义在MessageManager.php
     }
 
     /**
@@ -59,7 +79,7 @@
      * @return void
      */
     protected function onLocation() {
-      $num = 1 / 0;
+      //$num = 1 / 0;
       // 故意触发错误，用于演示调试功能
 
       $this->responseText('收到了位置消息：' . $this->getRequest('location_x') . ',' . $this->getRequest('location_y'));

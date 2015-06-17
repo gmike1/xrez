@@ -1,4 +1,4 @@
-<html>
+ï»¿<html>
 <head>
     <title>XREZ:KVDB-Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
@@ -47,7 +47,7 @@
 	<table border=0 cellPadding=0 cellspacing=0 >
 		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">J</td>
 		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Touch</td></tr>
-		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;¹µ&nbsp;Í¨&nbsp;¡¤&nbsp;Äã&nbsp;ÎÒ</td></tr>	
+		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;æ²Ÿ&nbsp;é€š&nbsp;Â·&nbsp;ä½ &nbsp;æˆ‘</td></tr>	
 	</table><br>
 <?php 
 $action="";
@@ -92,34 +92,34 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
 	</form>
 <?php
 
- //´´½¨ĞÂÀËKVDB¶ÔÏó
+ //åˆ›å»ºæ–°æµªKVDBå¯¹è±¡
  $kv = new SaeKV();
- //³õÊ¼»¯SaeKV¶ÔÏó
+ //åˆå§‹åŒ–SaeKVå¯¹è±¡
  $ret = $kv->init();
  
- //Ôö¼Ókey-value
+ //å¢åŠ key-value
  if(strcasecmp($action, "add")==0){
- // Ôö¼Ókey-value
+ // å¢åŠ key-value
  $ret = $kv->add($key, $value);
  //var_dump($ret);
  //$ret = $kv->add('msg.to.'.$t, $to);
  //var_dump($ret);
  }
  
- //»Ø¸´ĞÅÏ¢¡£Éæ¼°msg.item, msg.from,msg.to,msg.at 4ÀàÊı¾İ¸üĞÂ
+ //å›å¤ä¿¡æ¯ã€‚æ¶‰åŠmsg.item, msg.from,msg.to,msg.at 4ç±»æ•°æ®æ›´æ–°
  if(strcasecmp($action, "respond")==0){
  
  }
- //Ìæ»»key-valueÖ»ÔÚkey´æÔÚÊ±Æğ×÷ÓÃ
+ //æ›¿æ¢key-valueåªåœ¨keyå­˜åœ¨æ—¶èµ·ä½œç”¨
  if($action =="update"){
  //$t=time();
- // Ìæ»»key-value
+ // æ›¿æ¢key-value
  $ret = $kv->replace($key, $value);
  } 
  if($action =="delete"){
  $ret = $kv->delete($key);
  }
- //¿ªÊ¼Ã¶¾Ù¸üĞÂºóµÄkey-value
+ //å¼€å§‹æšä¸¾æ›´æ–°åçš„key-value
  $ret = $kv->pkrget('msg', 100);
 
  echo "<table border=0  cellPadding=0 cellspacing=0  style=\"width:100%\">";
@@ -128,11 +128,11 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
         {  
             foreach($ret as $key=>$val)  
             {
-                $status = "¡Ì";
+                $status = "âˆš";
                 if(strpos($key,"msg.item")===false){
                 $rail = substr($key,-10);
                 $ret = $kv->get("msg.item.".$rail);
-                if($ret===false)$status = "¡Á";
+                if($ret===false)$status = "Ã—";
                 }
                 
                 //var_dump("key: ".$key." value: ".$val."<p>");
@@ -156,8 +156,8 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
             }  
         }  
 		echo "</table>";        
- echo '<p>ÏÔÊ¾¡ÌµÄÎª×Ô¼ìÖ®ºó·¢ÏÖÕıÈ·ÎŞÎóµÄÏûÏ¢£»ÏÔÊ¾¡ÁµÄÎª×Ô¼ìÖ®ºó·¢ÏÖÒÑ¾­Ã»ÓĞÒ»ÖÂĞÔ£¨¹ÂÁ¢/Ëğ»µ£©µÄÏûÏ¢¡£'; 
- // É¾³ıkey-value
+ echo '<p>æ˜¾ç¤ºâˆšçš„ä¸ºè‡ªæ£€ä¹‹åå‘ç°æ­£ç¡®æ— è¯¯çš„æ¶ˆæ¯ï¼›æ˜¾ç¤ºÃ—çš„ä¸ºè‡ªæ£€ä¹‹åå‘ç°å·²ç»æ²¡æœ‰ä¸€è‡´æ€§ï¼ˆå­¤ç«‹/æŸåï¼‰çš„æ¶ˆæ¯ã€‚'; 
+ // åˆ é™¤key-value
  /*$ret = $kv->delete('abc');
  var_dump($ret);*/
 ?>

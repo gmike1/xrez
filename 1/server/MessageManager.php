@@ -123,6 +123,8 @@
 			$ret = $kv->add('msg.from.'.$t, $fromUserName);//
 			$ret = $kv->add('msg.to.'.$t, $fromUserName);//
 			if(strlen($at)>0)$ret = $kv->add('msg.at.'.$t, $at);
+			$recordCount=$kv->get("msg.recordCount");
+			$kv->set("msg.recordCount", ($recordCount+1));
 		}	
         
 		//首先精确，如果有匹配返回结果
@@ -154,7 +156,7 @@
 			$helpText="帮助：\n * 发送0或h获取帮助\n * 发送文本，推送到服务器（默认给本人微信账户）。\n *  数字指令1-2功能（参数用英文冒号:分隔）。\n * 1:收件人:文本，发送文本给指定收件人。\n * 2 获取本人电脑端或别人推送的信息。\n * 举例：\n输入1:小明: 推荐音乐http://url.cn/2qDEZT?q.mp3。[推送该音乐短链接给小明]";	
 			return $helpText;
 		}
-        if(checkStr($word)==7){
+        if(checkStr($word)==7){//checkStr($word)判断数字，汉字和英文
 			return "感谢你的反馈，我会把你的话转告我的主人的。相信主人很快会给你恢复:)";
         }
         //echo "Command  mode  ".$word[1];
@@ -171,7 +173,9 @@
 			echo "Command: $command <br/> Keyword: $keyword<br/>";
 			
         }else{//不包含指令，用户输入为要查的词
-			if((strcmp($word , "h")==0) OR (strcmp($word , "0")==0))
+			if(strcmp($word , "2")==0)
+				$command = 2;
+			else if((strcmp($word , "h")==0) OR (strcmp($word , "0")==0))
 				$command = 0;//初帮助指令
 			else	
 				$command = 1;//初帮助指令以外的默认指令
@@ -193,7 +197,8 @@
 		//初始化SaeKV对象
 		$ret = $kv->init();
 		$ret = $kv->pkrget('msg.item', 100);
-
+		$kv->set("msg.recordCount", 4);
+		$recordCount=$kv->get("msg.recordCount");
 		 echo "<table border=0  cellPadding=0 cellspacing=0 >";
 		 echo "<tr><td  nowrap class=\"frameCell\">ID</td><td  nowrap class=\"frameCell\">Key</td><td  nowrap class=\"frameCell\">Date</td><td class=\"frameCell\">Messgage</td>
 			<td class=\"frameCell\">From</td><td class=\"frameCell\">To</td><td class=\"frameCell\">@</td><td class=\"frameCell\">Action</td></tr>";        

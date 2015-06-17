@@ -84,8 +84,8 @@
 <div id="main" style="border:dotted 0px grey;">
 	<!--LOGO style="border:dotted 0px blue;" -->
 	<table border=0 cellPadding=0 cellspacing=0 >
-		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">J</td>
-		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Touch</td></tr>
+		<tr><td style="border:dotted 0px blue;color:#4D8606;font-family:arial;font-size:20px;text-align:right;">Message</td>
+		<td style="color: #f60;font-family:arial;font-size:20px;text-align:left;">Center</td></tr>
 		<tr><td colspan=2 style="color:#494949;font-family:arial;font-size:10px;">&nbsp;¹µ&nbsp;Í¨&nbsp;¡¤&nbsp;Äã&nbsp;ÎÒ</td></tr>	
 	</table><br>
 <?php
@@ -103,7 +103,7 @@ if(isset($_GET["at"]))	$at=$_GET["at"];
 if(isset($_GET["key"]))	$key=$_GET["key"];
 
 ?>
-	<form name="headerForm" action="connect.php" method="get">
+	<form name="headerForm" action="messageCenter.php" method="get">
 		<table style="width:100%">
 		<tr><td class="frameCell" style="width:10%">From: </td>
         <td class="frameCell"><input type="text" name="from" value="<?php echo $from; ?>" style="width:100%;"/></td></tr>

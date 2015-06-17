@@ -255,7 +255,30 @@
 		//$ret = $kv->get('msg.item', 100);
 		return $result;
 	}
-	
+	/*
+	判断数字，汉字和英文
+	*/
+	function checkStr($str){
+		$output=-1;
+		if(preg_match('[^\x00-\x7F]', $str)){//eregi
+			$output=7;//'有中文字符串';
+		}     
+		/*    
+		$a=ereg('['.chr(0xa1).'-'.chr(0xff).']', $str);
+		$b=ereg('[0-9]', $str);
+		$c=ereg('[a-zA-Z]', $str);
+		
+		if($a && $b && $c){ $output=7;//'汉字数字英文的混合字符串';}
+		elseif($a && $b && !$c){ $output=6;//'汉字数字的混合字符串';}
+		elseif($a && !$b && $c){ $output=5;//'汉字英文的混合字符串';}
+		elseif(!$a && $b && $c){ $output=4;//'数字英文的混合字符串';}
+		elseif($a && !$b && !$c){ $output=2;//'纯汉字';}
+		elseif(!$a && $b && !$c){ $output=3;//'纯数字';}
+		elseif(!$a && !$b && $c){ $output=1;//'纯英文';}
+		
+		*/
+		return $output;
+	}
 	function traceHttp(){
 		//初始化"saekv://log.content"
 		//resetLog();

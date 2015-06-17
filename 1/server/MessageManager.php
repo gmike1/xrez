@@ -71,6 +71,13 @@
 	$word='';
 	$at='';
 	$key='';
+	
+		//创建新浪KVDB对象
+		$kv = new SaeKV();
+		//初始化SaeKV对象
+		$ret = $kv->init();
+	
+	
 	if(isset($_GET["action"]))$action=$_GET["action"];
 	if(isset($_GET["from"]))	$from=$_GET["from"];
 	if(isset($_GET["to"]))	$to=$_GET["to"];
@@ -92,8 +99,28 @@
 	if (strlen(trim($_SERVER["QUERY_STRING"]))<1){
 		search($from, $to, $word);
 	}
+	
 	traceHttp();
 
+	 /*
+	 删除一条消息（4个键）
+	 */
+	 if($action =="delete"){
+	 
+		// 删除后缀为$rail的消息（msg.item）对应的消息内容
+		$ret = $kv->delete($key);
+		$rail = substr($key,-10);
+		// 删除后缀为$rail的消息（msg.item）对应的发送源（msg.from）
+		$ret = $kv->delete("msg.from.".$rail);
+		// 删除后缀为$rail的消息（msg.item）对应的发送对象（msg.to）
+		$ret = $kv->delete("msg.to.".$rail);
+		// 删除后缀为$rail的消息（msg.item）对应的回复对象（msg.at）
+		$ret = $kv->delete("msg.at.".$rail); 
+		
+		//每删除一条，记录计数减少1
+		$recordCount=$kv->get("msg.recordCount");
+		$kv->set("msg.recordCount", ($recordCount-1));  
+	 }
 	/*
 	process方法处理输入返回最后结果
 	*/
@@ -265,7 +292,7 @@
                 echo "<td nowrap class=\"frameCell\" >
 					<a  href=\"kvdbManager.php?action=respond&from=".$_to."&to=".$_from."&at=".$key."\">Respond</a>&nbsp;
 					<a href=\"kvdbManager.php?action=update&key=".$key."&value=".$val."\"   target=\"_blank\">Update</a>&nbsp;
-					<a href=\"kvdbManager.php?action=delete&key=".$key."\">Delete</a> </td>";
+					<a href=\"MessageManager.php?action=delete&key=".$key."\">Delete</a> </td>";
 					
 				echo "</tr>";
 				//<a  href=\"javascript:copycode($('code".$i."'));\">Copy</a>&nbsp;

@@ -118,8 +118,9 @@
 		<tr>
 		<td class="frameCell" style="width:10%">@:</td>
 		<td  class="frameCell" style="width:80%;"><input type="text" name="at" value="<?php echo $at; ?>" style="width:100%;"/></tr>
-		<tr>
-		<td colspan=2>
+		<tr><td colspan=2>&nbsp;</td></tr>
+		
+		<tr><td colspan=2>
 		<input type="submit" name="action" value="Send"/>
 		<input type="submit" name="action" value="Receive"/>
 		</td>
@@ -145,16 +146,22 @@
 	if(strlen($at)>0)
 	$ret = $kv->add('msg.at.'.$t, $at);
  }
- 
+ /*
+ 删除一条消息（4个键）
+ */
  if($action =="delete"){
+	// 删除后缀为$rail的消息（msg.item）对应的消息内容
 	$ret = $kv->delete($key);
 	$rail = substr($key,-10);
-	// 删除后缀为$rail的消息（msg.item）对应的发送源（msg.to）
+	// 删除后缀为$rail的消息（msg.item）对应的发送源（msg.from）
 	$ret = $kv->delete("msg.from.".$rail);
 	// 删除后缀为$rail的消息（msg.item）对应的发送对象（msg.to）
 	$ret = $kv->delete("msg.to.".$rail);
-	// 删除后缀为$rail的消息（msg.item）对应的回复对象（msg.to）
-	$ret = $kv->delete("msg.at.".$rail); 
+	// 删除后缀为$rail的消息（msg.item）对应的回复对象（msg.at）
+	$ret = $kv->delete("msg.at.".$rail);
+	//每删除一条，记录计数减少1
+	$recordCount=$kv->get("msg.recordCount");
+	$kv->set("msg.recordCount", ($recordCount-1));  
  }
  
  $ret = $kv->pkrget('msg.item', 100);
